@@ -1,0 +1,12 @@
+B:\Repositorios\verx\src\FluxoCaixa.Domain\bin\Debug\net8.0\FluxoCaixa.Domain.deps.json
+B:\Repositorios\verx\src\FluxoCaixa.Domain\bin\Debug\net8.0\FluxoCaixa.Domain.dll
+B:\Repositorios\verx\src\FluxoCaixa.Domain\bin\Debug\net8.0\FluxoCaixa.Domain.pdb
+B:\Repositorios\verx\src\FluxoCaixa.Domain\obj\Debug\net8.0\FluxoCaixa.Domain.GeneratedMSBuildEditorConfig.editorconfig
+B:\Repositorios\verx\src\FluxoCaixa.Domain\obj\Debug\net8.0\FluxoCaixa.Domain.AssemblyInfoInputs.cache
+B:\Repositorios\verx\src\FluxoCaixa.Domain\obj\Debug\net8.0\FluxoCaixa.Domain.AssemblyInfo.cs
+B:\Repositorios\verx\src\FluxoCaixa.Domain\obj\Debug\net8.0\FluxoCaixa.Domain.csproj.CoreCompileInputs.cache
+B:\Repositorios\verx\src\FluxoCaixa.Domain\obj\Debug\net8.0\FluxoCaixa.Domain.sourcelink.json
+B:\Repositorios\verx\src\FluxoCaixa.Domain\obj\Debug\net8.0\FluxoCaixa.Domain.dll
+B:\Repositorios\verx\src\FluxoCaixa.Domain\obj\Debug\net8.0\refint\FluxoCaixa.Domain.dll
+B:\Repositorios\verx\src\FluxoCaixa.Domain\obj\Debug\net8.0\FluxoCaixa.Domain.pdb
+B:\Repositorios\verx\src\FluxoCaixa.Domain\obj\Debug\net8.0\ref\FluxoCaixa.Domain.dll

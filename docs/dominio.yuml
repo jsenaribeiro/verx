@@ -1,0 +1,32 @@
+// {type:class}
+
+[<<entity>>Audit|date;time;json]
+[<<enum>>AuditType|create;update;delete]
+[Audit]-type>[AuditType]
+[<<abstract>>Entity|id {bg:white}]
+[<<abstract>>Pessoa|nome;email {bg:white}]
+[<<entity>>Usuario|senha]
+[<<entity>>Lancamento|data; hora; valor]
+[<<enum>>Transacao|credito;debito]
+
+[IRepository|loadAsync();listAsync(fn);saveAsync();dropAsync()]
+[IUnitOfWork|begin();commit();rollback();]
+[IRepository]^[IUsuarioRepository]
+[IRepository]^[ILancamentoRepository]
+[Audit]<-.-[IRepository]
+
+[Pessoa]^[Usuario]
+[Entity]^[Pessoa]
+[Entity]^[Lancamento]
+
+[Lancamento]-tipo>[Transacao]
+[Lancamento]-usuario>[Usuario]
+
+[IUnitOfWork]->[IUsuarioRepository]
+[IUnitOfWork]->[ILancamentoRepository]
+
+[UsuarioController|signIn(user); signUp(user); signOut(user)]
+[LancamentoController|creditar(valor);debitar(valor); relatorio(data)]
+
+[UsuarioController]-.->[Usuario]
+[LancamentoController]-.->[Lancamento]

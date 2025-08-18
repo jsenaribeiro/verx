@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "aqON3FX3r3h25MRY64/erevkPHCwUVPHCtSGXj8qOyA=",
+  "Source": "FluxoCaixa.WebApi",
+  "BasePath": "_content/FluxoCaixa.WebApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

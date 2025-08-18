@@ -1,0 +1,338 @@
+{
+  "format": 1,
+  "restore": {
+    "B:\\Repositorios\\verx\\src\\FluxoCaixa.UnitTests\\FluxoCaixa.UnitTests.csproj": {}
+  },
+  "projects": {
+    "B:\\Repositorios\\verx\\src\\FluxoCaixa.Domain\\FluxoCaixa.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "B:\\Repositorios\\verx\\src\\FluxoCaixa.Domain\\FluxoCaixa.Domain.csproj",
+        "projectName": "FluxoCaixa.Domain",
+        "projectPath": "B:\\Repositorios\\verx\\src\\FluxoCaixa.Domain\\FluxoCaixa.Domain.csproj",
+        "packagesPath": "C:\\Users\\Jonathan\\.nuget\\packages\\",
+        "outputPath": "B:\\Repositorios\\verx\\src\\FluxoCaixa.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Jonathan\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.413/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "B:\\Repositorios\\verx\\src\\FluxoCaixa.Infrastructure\\FluxoCaixa.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "B:\\Repositorios\\verx\\src\\FluxoCaixa.Infrastructure\\FluxoCaixa.Infrastructure.csproj",
+        "projectName": "FluxoCaixa.Infrastructure",
+        "projectPath": "B:\\Repositorios\\verx\\src\\FluxoCaixa.Infrastructure\\FluxoCaixa.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\Jonathan\\.nuget\\packages\\",
+        "outputPath": "B:\\Repositorios\\verx\\src\\FluxoCaixa.Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Jonathan\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "B:\\Repositorios\\verx\\src\\FluxoCaixa.Domain\\FluxoCaixa.Domain.csproj": {
+                "projectPath": "B:\\Repositorios\\verx\\src\\FluxoCaixa.Domain\\FluxoCaixa.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "MediatR": {
+              "target": "Package",
+              "version": "[13.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "target": "Package",
+              "version": "[8.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[8.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[8.0.10, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.413/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "B:\\Repositorios\\verx\\src\\FluxoCaixa.UnitTests\\FluxoCaixa.UnitTests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "B:\\Repositorios\\verx\\src\\FluxoCaixa.UnitTests\\FluxoCaixa.UnitTests.csproj",
+        "projectName": "FluxoCaixa.UnitTests",
+        "projectPath": "B:\\Repositorios\\verx\\src\\FluxoCaixa.UnitTests\\FluxoCaixa.UnitTests.csproj",
+        "packagesPath": "C:\\Users\\Jonathan\\.nuget\\packages\\",
+        "outputPath": "B:\\Repositorios\\verx\\src\\FluxoCaixa.UnitTests\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Jonathan\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "B:\\Repositorios\\verx\\src\\FluxoCaixa.Domain\\FluxoCaixa.Domain.csproj": {
+                "projectPath": "B:\\Repositorios\\verx\\src\\FluxoCaixa.Domain\\FluxoCaixa.Domain.csproj"
+              },
+              "B:\\Repositorios\\verx\\src\\FluxoCaixa.Infrastructure\\FluxoCaixa.Infrastructure.csproj": {
+                "projectPath": "B:\\Repositorios\\verx\\src\\FluxoCaixa.Infrastructure\\FluxoCaixa.Infrastructure.csproj"
+              },
+              "B:\\Repositorios\\verx\\src\\FluxoCaixa.WebApi\\FluxoCaixa.WebApi.csproj": {
+                "projectPath": "B:\\Repositorios\\verx\\src\\FluxoCaixa.WebApi\\FluxoCaixa.WebApi.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.8.0, )"
+            },
+            "SpecFlow": {
+              "target": "Package",
+              "version": "[3.9.74, )"
+            },
+            "SpecFlow.XUnit": {
+              "target": "Package",
+              "version": "[3.9.74, )"
+            },
+            "coverlet.collector": {
+              "target": "Package",
+              "version": "[6.0.4, )"
+            },
+            "coverlet.msbuild": {
+              "target": "Package",
+              "version": "[6.0.4, )"
+            },
+            "shouldly": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.5.3, )"
+            },
+            "xunit.runner.visualstudio": {
+              "target": "Package",
+              "version": "[2.5.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.413/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "B:\\Repositorios\\verx\\src\\FluxoCaixa.WebApi\\FluxoCaixa.WebApi.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "B:\\Repositorios\\verx\\src\\FluxoCaixa.WebApi\\FluxoCaixa.WebApi.csproj",
+        "projectName": "FluxoCaixa.WebApi",
+        "projectPath": "B:\\Repositorios\\verx\\src\\FluxoCaixa.WebApi\\FluxoCaixa.WebApi.csproj",
+        "packagesPath": "C:\\Users\\Jonathan\\.nuget\\packages\\",
+        "outputPath": "B:\\Repositorios\\verx\\src\\FluxoCaixa.WebApi\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Jonathan\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "B:\\Repositorios\\verx\\src\\FluxoCaixa.Domain\\FluxoCaixa.Domain.csproj": {
+                "projectPath": "B:\\Repositorios\\verx\\src\\FluxoCaixa.Domain\\FluxoCaixa.Domain.csproj"
+              },
+              "B:\\Repositorios\\verx\\src\\FluxoCaixa.Infrastructure\\FluxoCaixa.Infrastructure.csproj": {
+                "projectPath": "B:\\Repositorios\\verx\\src\\FluxoCaixa.Infrastructure\\FluxoCaixa.Infrastructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.2, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[9.0.3, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[8.13.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.413/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
