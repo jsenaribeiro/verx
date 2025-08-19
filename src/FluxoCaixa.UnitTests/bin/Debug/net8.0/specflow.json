@@ -1,6 +1,0 @@
-{
-   "runtime": {
-      "stopAtFirstError": false,
-      "testThreadIsolation": "SharedAppDomain"
-   }
-}

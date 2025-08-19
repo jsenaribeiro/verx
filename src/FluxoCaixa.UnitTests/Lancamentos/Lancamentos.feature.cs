@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace FluxoCaixa.UnitTests.Features
+namespace FluxoCaixa.UnitTests.Lancamentos
 {
     using TechTalk.SpecFlow;
     using System;
@@ -28,7 +28,7 @@ namespace FluxoCaixa.UnitTests.Features
         
         private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
-#line 1 "lancamentos.feature"
+#line 1 "Lancamentos.feature"
 #line hidden
         
         public ControleDeFluxoDeCaixaFeature(ControleDeFluxoDeCaixaFeature.FixtureData fixtureData, FluxoCaixa_UnitTests_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
@@ -40,7 +40,7 @@ namespace FluxoCaixa.UnitTests.Features
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("pt-BR"), "Features", "Controle de Fluxo de Caixa", "  Como usuário do fluxo de caixa \r\n  Quero lançar débitos e créditos\r\n  Para gera" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("pt-BR"), "Lancamentos", "Controle de Fluxo de Caixa", "  Como usuário do fluxo de caixa \r\n  Quero lançar débitos e créditos\r\n  Para gera" +
                     "r relatórios de saldo diário", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -153,6 +153,57 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 23
   testRunner.Then("será exibida a mensagem de erro \"Valor de lançamento não pode ser zero.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Então ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Gerar relatório de saldo diário")]
+        [Xunit.TraitAttribute("FeatureTitle", "Controle de Fluxo de Caixa")]
+        [Xunit.TraitAttribute("Description", "Gerar relatório de saldo diário")]
+        public void GerarRelatorioDeSaldoDiario()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Gerar relatório de saldo diário", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 30
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Tipo",
+                            "Valor",
+                            "Data"});
+                table1.AddRow(new string[] {
+                            "\"crédito\"",
+                            "150,00",
+                            "\"2025-08-14\""});
+                table1.AddRow(new string[] {
+                            "\"débito\"",
+                            "50,00",
+                            "\"2025-08-13\""});
+                table1.AddRow(new string[] {
+                            "\"débito\"",
+                            "50,00",
+                            "\"2025-08-14\""});
+                table1.AddRow(new string[] {
+                            "\"débito\"",
+                            "50,00",
+                            "\"2025-08-15\""});
+#line 31
+  testRunner.Given("que existem os seguintes lançamentos:", ((string)(null)), table1, "Dado ");
+#line hidden
+#line 37
+  testRunner.When("solicitar o saldo consolidado do dia \"2025-08-14\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Quando ");
+#line hidden
+#line 38
+  testRunner.Then("o saldo consolidado deve ser R$ 100,00", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Então ");
 #line hidden
             }
             this.ScenarioCleanup();

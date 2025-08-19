@@ -15,9 +15,9 @@
 - dependency injection
 - service locator
 - repository + generic repository
-- unitOfWork
-- service
-- entity
+- unitOfWork 
+- service (DDD)
+- entity (DDD)
 
 ## Princípios
 - SOLID: SRP + OCP + LKV + ISP + DIP

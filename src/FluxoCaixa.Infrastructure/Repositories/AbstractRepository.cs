@@ -97,25 +97,18 @@ public abstract class AbstractRepository<E> : IRepository<E> where E : Entity
       try
       {
          var entidade = await dbSet.FirstOrDefaultAsync(x => x.Id == id);
+
          if (entidade is null) return false;
          else dbSet.Remove(entidade);
          await context.SaveChangesAsync();
+
          context.ChangeTracker.Clear();
 
          return true;
       }
-      catch (DbUpdateConcurrencyException ex)
-      {
-         throw new Exception("Erro de concorrência", ex);
-      }
-      catch (DbUpdateException ex)
-      {
-         throw new Exception("Erro ao remover entidade", ex);
-      }
-      catch (Exception ex)
-      {
-         throw new Exception("Erro inesperado", ex);
-      }
+      catch (DbUpdateConcurrencyException) { return false; }
+      catch (DbUpdateException) { return false; }
+      catch (Exception) { return false; }
    }
 
    public async Task<bool> DropAsync(Expression<Func<E, bool>> predicate)

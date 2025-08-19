@@ -1,21 +1,22 @@
 namespace FluxoCaixa.WebApi.Controllers;
 
-using System.Security.Authentication;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Authentication;
 
 public abstract class ApiController<E> : ControllerBase where E : class
 {
    protected readonly ILogger<E> logger;
 
-   public ApiController(IServiceProvider provider) =>
+   protected readonly IMediator mediator;
+
+   public ApiController(IServiceProvider provider)
+   {
       logger = provider.GetRequiredService<ILogger<E>>();
-
-   protected Task<IActionResult> ReadAsync<T>(Task<T> task) => TryAsync(() => task);
-
-   protected async Task<IActionResult> WriteAsync(Task task) =>
-      await TryAsync(async () => { await task; return true; });
-
-   private async Task<IActionResult> TryAsync<T>(Func<Task<T>> task)
+      mediator = provider.GetRequiredService<IMediator>();
+   }
+   
+   protected async Task<IActionResult> TryAsync<T>(Func<Task<T>> task)
    {
       try
       {

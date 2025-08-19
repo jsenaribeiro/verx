@@ -27,12 +27,12 @@ Exemplos:
   | "crédito" |
   | "débito"  |
 
-# Cenário: Gerar relatório de saldo diário
-#   Dado que existem os seguintes lançamentos:
-#     | Tipo      | Valor  |   Data       |
-#     | "crédito" | 150,00 | "2025-08-14" |
-#     | "débito"  | 50,00  | "2025-08-13" |
-#     | "débito"  | 50,00  | "2025-08-14" |
-#     | "débito"  | 50,00  | "2025-08-15" |
-#   Quando solicitar o saldo consolidado do dia "2025-08-14"
-#   Então o saldo consolidado deve ser R$ 100,00
+Cenário: Gerar relatório de saldo diário
+  Dado que existem os seguintes lançamentos:
+    | Tipo      | Valor  |   Data       |
+    | "crédito" | 150,00 | "2025-08-14" |
+    | "débito"  | 50,00  | "2025-08-13" |
+    | "débito"  | 50,00  | "2025-08-14" |
+    | "débito"  | 50,00  | "2025-08-15" |
+  Quando solicitar o saldo consolidado do dia "2025-08-14"
+  Então o saldo consolidado deve ser R$ 100,00

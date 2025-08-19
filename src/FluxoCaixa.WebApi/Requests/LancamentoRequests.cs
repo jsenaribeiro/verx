@@ -1,4 +1,5 @@
 using FluxoCaixa.Domain.Commons;
+using MediatR;
 
 namespace FluxoCaixa.Domain.Lancamentos;
 
@@ -10,8 +11,8 @@ public abstract record DataHoraRequest
 
 }
 
-public partial record SaldoDiarioQuery(string data) : IQuery<decimal>;
+public record SaldoDiarioQuery(string data) : IRequest<decimal>;
 
-public partial record CreditarCommand(decimal valor) : DataHoraRequest, ICommand<bool>;
+public record CreditarCommand(decimal valor) : DataHoraRequest, IRequest<bool>;
 
-public partial record DebitarCommand(decimal valor) : DataHoraRequest, ICommand<bool>;
+public record DebitarCommand(decimal valor) : DataHoraRequest, IRequest<bool>;

@@ -1,4 +1,5 @@
 using FluxoCaixa.Domain.Commons;
+using FluxoCaixa.Domain.Usuarios;
 
 namespace FluxoCaixa.Domain.Lancamentos;
 
@@ -22,6 +23,10 @@ public class Lancamento : Entity
    public TimeOnly Hora { get; set; }
 
    public decimal Valor { get; set; }
+
+   public Usuario Usuario { get; set; }
+
+   public Guid UsuarioId { get; set; }
 
    public LancamentoTipo Tipo =>
         Valor > 0 ? LancamentoTipo.Credito

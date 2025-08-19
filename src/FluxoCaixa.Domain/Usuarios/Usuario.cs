@@ -4,6 +4,8 @@ namespace FluxoCaixa.Domain.Usuarios;
 
 public class Usuario : Entity
 {
+   public Usuario() { }
+
    public Usuario(string nome, string email, string senha)
    {
       this.Nome = nome;
@@ -11,9 +13,9 @@ public class Usuario : Entity
       this.Senha = senha;
    }
 
-   public string Nome { get; private set; }
+   public string Nome { get; set; } = "";
 
-   public string Email { get; private set; }
+   public string Email { get; set; } = "";
 
-   public string Senha { get; private set; }
+   public string Senha { get; set; } = "";
 }

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FluxoCaixa.UnitTests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+39ba9debf1c562da9b58d591a6d6a25c013dc5db")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a43ec55064e1da777efa03904d9fdcf7334be470")]
 [assembly: System.Reflection.AssemblyProductAttribute("FluxoCaixa.UnitTests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FluxoCaixa.UnitTests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

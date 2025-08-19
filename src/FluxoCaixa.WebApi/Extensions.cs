@@ -1,12 +1,10 @@
-using System.Reflection;
 using System.Text;
+using System.Reflection;
 using FluxoCaixa.Domain.Lancamentos;
-using FluxoCaixa.Infrastructure.Adapters;
-using Infrastructure;
-using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Infrastructure;
 
 public static class Extensions
 {
@@ -42,9 +40,6 @@ public static class Extensions
       var assembly = Assembly.GetAssembly(typeof(LancamentoHandler))!;
 
       services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(assembly));
-
-      services.AddScoped(typeof(IRequestHandler<,>), typeof(CommandHandlerAdapter<,>));
-      services.AddScoped(typeof(IRequestHandler<,>), typeof(QueryHandlerAdapter<,>));
 
       return services;
    }

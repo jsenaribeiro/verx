@@ -4,5 +4,5 @@ namespace FluxoCaixa.Domain.Lancamentos;
 
 public interface ILancamentoRepository : IRepository<Lancamento>
 {
-   public Task<decimal> GetAsync(SaldoDiarioQuery query);
+   public Task<decimal> GetSaldoDiarioAsync(DateOnly data);
 }
