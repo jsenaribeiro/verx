@@ -7,6 +7,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 builder.Services.AddMediatorCQRS();
 builder.Services.AddSqlServerContext();
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddLogging(x => x.AddConsole());
 builder.Services.AddJwtBearer(builder.Configuration);

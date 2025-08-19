@@ -76,6 +76,15 @@ namespace FluxoCaixa.UnitTests.Lancamentos
             testRunner.CollectScenarioErrors();
         }
         
+        public virtual void FeatureBackground()
+        {
+#line 8
+#line hidden
+#line 9
+   testRunner.Given("usuário \"teste\" está logado", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Dado ");
+#line hidden
+        }
+        
         void System.IDisposable.Dispose()
         {
             this.TestTearDown();
@@ -95,7 +104,7 @@ namespace FluxoCaixa.UnitTests.Lancamentos
             argumentsOfScenario.Add("data", data);
             argumentsOfScenario.Add("resultado", resultado);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Lançamentos", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 8
+#line 11
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -105,22 +114,28 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 9
-  testRunner.Given(string.Format("que o valor de lançamento é {0}", valor), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Dado ");
-#line hidden
-#line 10
-  testRunner.And(string.Format("o tipo do lançamento é {0}", tipo), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
-#line hidden
-#line 11
-  testRunner.When(string.Format("eu lançar o valor na data {0}", data), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Quando ");
+#line 8
+this.FeatureBackground();
 #line hidden
 #line 12
-  testRunner.Then(string.Format("o valor registrado será {0}", resultado), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Então ");
+  testRunner.Given(string.Format("que o valor de lançamento é {0}", valor), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Dado ");
 #line hidden
 #line 13
-  testRunner.And(string.Format("o tipo registrado será {0}", tipo), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+  testRunner.And(string.Format("o tipo do lançamento é {0}", tipo), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
 #line hidden
 #line 14
+  testRunner.When(string.Format("eu lançar o valor na data {0}", data), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Quando ");
+#line hidden
+#line 15
+  testRunner.Then(string.Format("o valor registrado será {0}", resultado), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Então ");
+#line hidden
+#line 16
+  testRunner.And(string.Format("o tipo registrado será {0}", tipo), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line hidden
+#line 17
+  testRunner.And("usuário registrado é \"teste\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line hidden
+#line 18
   testRunner.And(string.Format("a data será {0}", data), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
 #line hidden
             }
@@ -138,7 +153,7 @@ this.ScenarioInitialize(scenarioInfo);
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("transacao", transacao);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Erro ao lançar com valores zerados", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 21
+#line 25
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -148,11 +163,14 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 22
-  testRunner.When(string.Format("eu lançar um {0} de R$ 0,00 na data \"2025-08-14\"", transacao), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Quando ");
+#line 8
+this.FeatureBackground();
 #line hidden
-#line 23
-  testRunner.Then("será exibida a mensagem de erro \"Valor de lançamento não pode ser zero.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Então ");
+#line 26
+   testRunner.When(string.Format("eu lançar um {0} de R$ 0,00 na data \"2025-08-14\"", transacao), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Quando ");
+#line hidden
+#line 27
+   testRunner.Then("será exibida a mensagem de erro \"Valor de lançamento não pode ser zero.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Então ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -166,7 +184,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Gerar relatório de saldo diário", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 30
+#line 34
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -176,6 +194,9 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+#line 8
+this.FeatureBackground();
+#line hidden
                 TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                             "Tipo",
                             "Valor",
@@ -196,13 +217,13 @@ this.ScenarioInitialize(scenarioInfo);
                             "\"débito\"",
                             "50,00",
                             "\"2025-08-15\""});
-#line 31
+#line 35
   testRunner.Given("que existem os seguintes lançamentos:", ((string)(null)), table1, "Dado ");
 #line hidden
-#line 37
+#line 41
   testRunner.When("solicitar o saldo consolidado do dia \"2025-08-14\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Quando ");
 #line hidden
-#line 38
+#line 42
   testRunner.Then("o saldo consolidado deve ser R$ 100,00", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Então ");
 #line hidden
             }

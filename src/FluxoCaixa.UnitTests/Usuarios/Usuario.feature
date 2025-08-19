@@ -25,7 +25,7 @@ Esquema do Cenário: Exceções
    Dado usuário com nome <usuario>, email <email> e senha <senha>
    E esse usuário não está registrado no sistema
    Quando se <acao> com <email> e <senha>
-   Então dever retornar <mensagem>
+   Então dever retornar <mensagem>   
 
 Exemplos:
    | acao         | usuario    | senha | email             | mensagem                |

@@ -22,6 +22,11 @@ public abstract class ApiController<E> : ControllerBase where E : class
       {
          return Ok(await task());
       }
+      catch (UnauthorizedAccessException ex)
+      {
+         logger.LogError(ex, ex.Message);
+         return Unauthorized(ex);
+      }
       catch (AuthenticationException ex)
       {
          logger.LogError(ex, ex.Message);

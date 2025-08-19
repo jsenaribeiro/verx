@@ -6,6 +6,9 @@ using Shouldly;
 using FluxoCaixa.WebApi.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using FluxoCaixa.Infrastructure;
+using Microsoft.AspNetCore.Http;
+using FluxoCaixa.Domain.Usuarios;
+using System.Security.Claims;
 
 namespace FluxoCaixa.UnitTests;
 
@@ -17,11 +20,12 @@ public class LancamentoStepDefinitions : AbstractTest
    private LancamentoController _controller;
    private List<DateOnly> _datasSalvas = new();
    private (decimal valor, DateOnly data) _esperado;
+   private Usuario _usuario;
 
    public LancamentoStepDefinitions()
    {
       Compose();
-
+      _usuario = new Usuario("teste", "teste@email.com", "123"); 
       _handler = provider.GetRequiredService<LancamentoHandler>();
       _esperado = (0, DateOnly.MinValue);
       _controller = new LancamentoController(provider);
@@ -29,6 +33,13 @@ public class LancamentoStepDefinitions : AbstractTest
 
    [Given(@"que o valor de lançamento é (.*)")]
    public void DadoQueOValorDeLancamentoE_(decimal valor) => _esperado.valor = valor;
+
+   [Given(@"usuário ""(.*)"" está logado")]
+   public void DadoUsuarioEstaLogado(string nome)
+   {
+      _usuario.Nome = nome;
+      _controller.ControllerContext = UsuarioLogado(_usuario);
+   }
 
    [Given(@"que existem os seguintes lançamentos:")]
    public void DadoQueExistemOsSeguintesLancamentos(Table table)
@@ -39,7 +50,11 @@ public class LancamentoStepDefinitions : AbstractTest
       {
          var data = DateOnly.Parse(dto.Data);
          var valor = dto.Tipo == "crédito" ? dto.Valor : dto.Valor * -1;
-         var lancamento = new Lancamento(valor) { Data = data };
+         var lancamento = new Lancamento(valor)
+         {
+            Data = data,
+            UsuarioId = _usuario.Id
+         };
 
          unitOfWork.Lancamentos.SaveAsync(lancamento).Wait();
 
@@ -93,6 +108,18 @@ public class LancamentoStepDefinitions : AbstractTest
    public void EntaoSeraExibidaAMensagemDeErro(string mensagem) =>
       GetValueOf<Exception>(_resultado!)?.Message.ShouldBe(mensagem);
 
+   [Then(@"usuário registrado é ""(.*)""")]
+   public void EntaoUsuarioRegistradoE(string nome)
+   {
+      var lancamento = CarregarLancamento(_esperado.data);
+
+      var usuario = unitOfWork.Usuarios
+         .LoadAsync(x => x.Nome == nome)
+         .Result.ShouldNotBeNull();
+
+      lancamento.UsuarioId.ShouldBe(usuario.Id);
+   }
+
    private Lancamento CarregarLancamento(DateOnly data) =>
       unitOfWork.Lancamentos
          .LoadAsync(x => x.Data == data)
@@ -101,16 +128,8 @@ public class LancamentoStepDefinitions : AbstractTest
    [BeforeScenario]
    public void Clear()
    {
-      // unitOfWork.Usuarios.DropAsync(x => x.Nome == "teste").Wait();
-      // unitOfWork.Lancamentos.DropAsync(x => x.Data == _esperado.data).Wait();
-
-      // foreach (var data in _datasSalvas)
-      //    unitOfWork.Lancamentos
-      //       .DropAsync(x => x.Data == data);
-
       unitOfWork.Usuarios.DropAsync(x => true).Wait();
       unitOfWork.Lancamentos.DropAsync(x => true).Wait();
-
       _datasSalvas = new();
    }
 
