@@ -25,22 +25,22 @@ public abstract class ApiController<E> : ControllerBase where E : class
       catch (UnauthorizedAccessException ex)
       {
          logger.LogError(ex, ex.Message);
-         return Unauthorized(ex);
+         return Unauthorized(ex.Message);
       }
       catch (AuthenticationException ex)
       {
          logger.LogError(ex, ex.Message);
-         return Unauthorized(ex);
+         return Unauthorized(ex.Message);
       }
       catch (NullReferenceException ex)
       {
          logger.LogError(ex, ex.Message);
-         return NotFound(ex);
+         return NotFound(ex.Message);
       }
       catch (ArgumentException ex)
       {
          logger.LogError(ex, ex.Message);
-         return BadRequest(ex);
+         return BadRequest(ex.Message);
       }
       catch (Exception ex)
       {

@@ -71,14 +71,7 @@ public class LancamentoStepDefinitions : AbstractTest
    public void QuandoSolicitarOSaldoConsolidadoDoDia(string data) =>
       _resultado = _controller.Get(data).Result;
 
-   [When(@"eu lançar o valor na data ""(.*)""")]
-   public void QuandoEuLancarOValorNaData(string data)
-   {
-      var tipo = _esperado.valor > 0 ? "crédito" : "débito";
-      SendCommand(tipo, _esperado.valor, data);
-   }
-
-   [When(@"eu lançar um ""(.*)"" de R\$ (.*) na data ""(.*)""")]
+   [When(@"lançar um ""(.*)"" de R\$ (.*) em ""(.*)""")]
    public void QuandoEuLancarUmDeRNaData(string tipo, decimal valor, string data) =>
       SendCommand(tipo, valor, data);
 
@@ -106,7 +99,7 @@ public class LancamentoStepDefinitions : AbstractTest
 
    [Then(@"será exibida a mensagem de erro ""(.*)""")]
    public void EntaoSeraExibidaAMensagemDeErro(string mensagem) =>
-      GetValueOf<Exception>(_resultado!)?.Message.ShouldBe(mensagem);
+      GetValueOf<string>(_resultado!)?.ShouldBe(mensagem);
 
    [Then(@"usuário registrado é ""(.*)""")]
    public void EntaoUsuarioRegistradoE(string nome)
@@ -139,7 +132,7 @@ public class LancamentoStepDefinitions : AbstractTest
 
       dynamic command = tipo == "crédito"
          ? new CreditarCommand(valor) with { Data = _esperado.data }
-         : new DebitarCommand(valor * -1) with { Data = _esperado.data };
+         : new DebitarCommand(valor) with { Data = _esperado.data };
 
       _resultado = tipo == "crédito"
          ? _controller.Post(command).Result

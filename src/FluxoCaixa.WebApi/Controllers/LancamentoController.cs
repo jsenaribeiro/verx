@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using FluxoCaixa.Domain.Lancamentos;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FluxoCaixa.WebApi.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class LancamentoController : ApiController<Lancamento>
@@ -12,9 +14,9 @@ public class LancamentoController : ApiController<Lancamento>
    /// <summary>
    /// Consultando saldo diário do usuário logado
    /// </summary>
-   /// <param name="data">yyyy-MM-dd</param>
-   [HttpGet("saldo/{data}")]
-   public Task<IActionResult> Get([FromQuery] string data) =>
+   /// <param name="data">yyyy-MM-dd</param>   
+   [HttpGet("{data}")]
+   public Task<IActionResult> Get(string data) =>
       TryAsync(() => mediator.Send(new SaldoDiarioQuery(data)));
 
    /// <summary>

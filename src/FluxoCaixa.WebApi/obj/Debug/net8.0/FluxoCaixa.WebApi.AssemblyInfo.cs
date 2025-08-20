@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FluxoCaixa.WebApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+48516951cd81e17d3aaf41392e722f16d00d72d9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cd2923c86ec0cd830e6074f6c8e806435e1aa74a")]
 [assembly: System.Reflection.AssemblyProductAttribute("FluxoCaixa.WebApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FluxoCaixa.WebApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -11,7 +11,7 @@ Contexto:
 Esquema do Cenário: Lançamentos
   Dado que o valor de lançamento é <valor>
   E o tipo do lançamento é <tipo>
-  Quando eu lançar o valor na data <data>
+  Quando lançar um <tipo> de R$ <valor> em <data>
   Então o valor registrado será <resultado>
   E o tipo registrado será <tipo>  
   E usuário registrado é "teste"
@@ -22,14 +22,16 @@ Exemplos:
   | 150,00 | "crédito" | "2025-08-14" | 150,00    |
   | 200,00 | "débito"  | "2025-08-14" | -200,00   |
 
-Esquema do Cenário: Erro ao lançar com valores zerados
-   Quando eu lançar um <transacao> de R$ 0,00 na data "2025-08-14"
-   Então será exibida a mensagem de erro "Valor de lançamento não pode ser zero."
+Esquema do Cenário: Valores inválidos
+   Quando lançar um <transacao> de R$ <valor> em "2025-08-14"
+   Então será exibida a mensagem de erro <erro>
 
 Exemplos:
-   | transacao |
-   | "crédito" |
-   | "débito"  |
+   | transacao | valor  | erro                           |
+   | "crédito" | 0,00   | "Valor não pode ser zero."     |
+   | "débito"  | 0,00   | "Valor não pode ser zero."     |
+   | "crédito" | -1,00  | "Valor não pode ser negativo." |
+   | "débito"  | -1,00  | "Valor não pode ser negativo." |
 
 Cenário: Gerar relatório de saldo diário
   Dado que existem os seguintes lançamentos:

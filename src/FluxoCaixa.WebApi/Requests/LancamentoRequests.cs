@@ -7,7 +7,7 @@ public abstract record DataHoraRequest
 {
    public DateOnly Data { get; set; } = DateOnly.FromDateTime(DateTime.Now);
 
-   public TimeOnly Hora { get; set; } = TimeOnly.FromDateTime(DateTime.Now);
+   public TimeOnly Hora { get; set; } = TimeOnly.Parse(DateTime.Now.ToString("HH:mm:ss"));
 
 }
 

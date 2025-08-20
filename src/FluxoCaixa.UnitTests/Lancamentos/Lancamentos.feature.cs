@@ -124,7 +124,7 @@ this.FeatureBackground();
   testRunner.And(string.Format("o tipo do lançamento é {0}", tipo), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
 #line hidden
 #line 14
-  testRunner.When(string.Format("eu lançar o valor na data {0}", data), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Quando ");
+  testRunner.When(string.Format("lançar um {0} de R$ {1} em {2}", tipo, valor, data), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Quando ");
 #line hidden
 #line 15
   testRunner.Then(string.Format("o valor registrado será {0}", resultado), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Então ");
@@ -142,17 +142,21 @@ this.FeatureBackground();
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableTheoryAttribute(DisplayName="Erro ao lançar com valores zerados")]
+        [Xunit.SkippableTheoryAttribute(DisplayName="Valores inválidos")]
         [Xunit.TraitAttribute("FeatureTitle", "Controle de Fluxo de Caixa")]
-        [Xunit.TraitAttribute("Description", "Erro ao lançar com valores zerados")]
-        [Xunit.InlineDataAttribute("\"crédito\"", new string[0])]
-        [Xunit.InlineDataAttribute("\"débito\"", new string[0])]
-        public void ErroAoLancarComValoresZerados(string transacao, string[] exampleTags)
+        [Xunit.TraitAttribute("Description", "Valores inválidos")]
+        [Xunit.InlineDataAttribute("\"crédito\"", "0,00", "\"Valor não pode ser zero.\"", new string[0])]
+        [Xunit.InlineDataAttribute("\"débito\"", "0,00", "\"Valor não pode ser zero.\"", new string[0])]
+        [Xunit.InlineDataAttribute("\"crédito\"", "-1,00", "\"Valor não pode ser negativo.\"", new string[0])]
+        [Xunit.InlineDataAttribute("\"débito\"", "-1,00", "\"Valor não pode ser negativo.\"", new string[0])]
+        public void ValoresInvalidos(string transacao, string valor, string erro, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("transacao", transacao);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Erro ao lançar com valores zerados", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            argumentsOfScenario.Add("valor", valor);
+            argumentsOfScenario.Add("erro", erro);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Valores inválidos", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 25
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -167,10 +171,10 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
 #line 26
-   testRunner.When(string.Format("eu lançar um {0} de R$ 0,00 na data \"2025-08-14\"", transacao), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Quando ");
+   testRunner.When(string.Format("lançar um {0} de R$ {1} em \"2025-08-14\"", transacao, valor), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Quando ");
 #line hidden
 #line 27
-   testRunner.Then("será exibida a mensagem de erro \"Valor de lançamento não pode ser zero.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Então ");
+   testRunner.Then(string.Format("será exibida a mensagem de erro {0}", erro), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Então ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -184,7 +188,7 @@ this.FeatureBackground();
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Gerar relatório de saldo diário", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 34
+#line 36
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -217,13 +221,13 @@ this.FeatureBackground();
                             "\"débito\"",
                             "50,00",
                             "\"2025-08-15\""});
-#line 35
+#line 37
   testRunner.Given("que existem os seguintes lançamentos:", ((string)(null)), table1, "Dado ");
 #line hidden
-#line 41
+#line 43
   testRunner.When("solicitar o saldo consolidado do dia \"2025-08-14\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Quando ");
 #line hidden
-#line 42
+#line 44
   testRunner.Then("o saldo consolidado deve ser R$ 100,00", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Então ");
 #line hidden
             }

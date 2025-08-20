@@ -71,14 +71,11 @@ public class UsuarioStepDefinitions : AbstractTest
 
       if (acao == "autenticar" || acao == "logar")
          _resultado = _controller.SignIn(new SignInQuery(email, senha)).Result;
-
-      if (acao == "deslogar")
-         _resultado = _controller.SignOut().Result;
    }
 
    [Then(@"dever retornar ""(.*)""")]
    public void EntaoDeverRetornar(string mensagem) =>
-      GetValueOf<Exception>(_resultado!)!.Message.ShouldBe(mensagem);
+      GetValueOf<string>(_resultado!)!.ShouldBe(mensagem);
 
    [Then(@"se deve ""(.*)"" com sucesso")]
    public void EntaoSeDeveComSucesso(string acao)

@@ -123,3 +123,5 @@ B:\Repositorios\verx\src\FluxoCaixa.WebApi\bin\Debug\net8.0\FluxoCaixa.Domain.pd
 B:\Repositorios\verx\src\FluxoCaixa.WebApi\bin\Debug\net8.0\FluxoCaixa.Infrastructure.pdb
 B:\Repositorios\verx\src\FluxoCaixa.WebApi\bin\Debug\net8.0\MediatR.dll
 B:\Repositorios\verx\src\FluxoCaixa.WebApi\bin\Debug\net8.0\MediatR.Contracts.dll
+B:\Repositorios\verx\src\FluxoCaixa.WebApi\bin\Debug\net8.0\FluxoCaixa.WebApi.xml
+B:\Repositorios\verx\src\FluxoCaixa.WebApi\obj\Debug\net8.0\FluxoCaixa.WebApi.xml
