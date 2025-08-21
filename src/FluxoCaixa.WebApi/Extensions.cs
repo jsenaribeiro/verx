@@ -2,10 +2,13 @@ using System.Text;
 using System.Reflection;
 using FluxoCaixa.Domain.Lancamentos;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Infrastructure;
 using Microsoft.OpenApi.Models;
+using NLog.Extensions.Logging;
+using NLog.Web;
 
 public static class Extensions
 {
@@ -45,9 +48,11 @@ public static class Extensions
       return services;
    }
 
-   public static IServiceCollection AddSqlServerContext(this IServiceCollection services)
+   public static IServiceCollection AddSqlServerContext(this IServiceCollection services, IConfiguration configuration)
    {
-      services.AddDbContext<SqlServerContext>(opt => opt.UseInMemoryDatabase("db"));
+      var connection = configuration.GetConnectionString("DefaultConnection");
+
+      services.AddDbContext<SqlServerContext>(opt => opt.UseSqlServer(connection));
 
       return services;
    }
@@ -91,5 +96,41 @@ public static class Extensions
       });
 
       return services;
+   }
+
+   public static IServiceCollection AddHealthCheck(this IServiceCollection services, IConfiguration configuration)
+   {
+      var connection = configuration.GetConnectionString("DefaultConnection");
+
+      services.AddHealthChecks().AddSqlServer(connection!);
+
+      return services;
+   }
+
+   public static IServiceCollection AddTelemetry(this IServiceCollection services, IConfiguration configuration)
+   {
+      return services.AddApplicationInsightsTelemetry();
+   }
+
+   public static IServiceCollection AddDistributedCache(this IServiceCollection services, IConfiguration configuration)
+   {
+      services.AddResponseCaching();
+      services.AddStackExchangeRedisCache(options =>
+      {
+         options.Configuration = configuration["Cache:Redis"] ?? "localhost:6379";
+         options.InstanceName = "caching:";
+      });
+
+      return services;
+   }
+
+   public static NLog.Logger AddLogging(this WebApplicationBuilder builder)
+   {
+      builder.Logging.ClearProviders();
+      builder.Logging.ClearProviders();
+      builder.Logging.AddNLog();
+      builder.Host.UseNLog();
+
+      return NLog.LogManager.GetCurrentClassLogger();
    }
 }

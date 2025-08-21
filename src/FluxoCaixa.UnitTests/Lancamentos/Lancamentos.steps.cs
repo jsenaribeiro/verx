@@ -26,9 +26,9 @@ public class LancamentoStepDefinitions : AbstractTest
    {
       Compose();
       _usuario = new Usuario("teste", "teste@email.com", "123"); 
-      _handler = provider.GetRequiredService<LancamentoHandler>();
+      _handler = provider!.GetRequiredService<LancamentoHandler>();
       _esperado = (0, DateOnly.MinValue);
-      _controller = new LancamentoController(provider);
+      _controller = new LancamentoController(provider!);
    }
 
    [Given(@"que o valor de lançamento é (.*)")]
@@ -56,7 +56,7 @@ public class LancamentoStepDefinitions : AbstractTest
             UsuarioId = _usuario.Id
          };
 
-         unitOfWork.Lancamentos.SaveAsync(lancamento).Wait();
+         unitOfWork!.Lancamentos.SaveAsync(lancamento).Wait();
 
          _datasSalvas.Add(data);
       }
@@ -106,7 +106,7 @@ public class LancamentoStepDefinitions : AbstractTest
    {
       var lancamento = CarregarLancamento(_esperado.data);
 
-      var usuario = unitOfWork.Usuarios
+      var usuario = unitOfWork!.Usuarios
          .LoadAsync(x => x.Nome == nome)
          .Result.ShouldNotBeNull();
 
@@ -114,15 +114,15 @@ public class LancamentoStepDefinitions : AbstractTest
    }
 
    private Lancamento CarregarLancamento(DateOnly data) =>
-      unitOfWork.Lancamentos
+      unitOfWork!.Lancamentos
          .LoadAsync(x => x.Data == data)
          .Result.ShouldNotBeNull();
 
    [BeforeScenario]
    public void Clear()
    {
-      unitOfWork.Usuarios.DropAsync(x => true).Wait();
-      unitOfWork.Lancamentos.DropAsync(x => true).Wait();
+      unitOfWork!.Usuarios.DropAsync(x => true).Wait();
+      unitOfWork!.Lancamentos.DropAsync(x => true).Wait();
       _datasSalvas = new();
    }
 

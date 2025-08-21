@@ -1,0 +1,20 @@
+# Binários e pastas de build
+bin/
+obj/
+out/
+packages/
+*.vs/
+
+*.user
+*.suo
+*.vcxproj.user
+*.pdb
+*.cache
+*.log
+*.sln.iml
+*.nupkg
+*.snupkg
+*.DS_Store
+*.Thumbs.db
+*.db
+*.sqlite

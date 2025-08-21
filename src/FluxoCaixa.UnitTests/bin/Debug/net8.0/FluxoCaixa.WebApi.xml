@@ -22,5 +22,15 @@
             </summary>
             <param name="command">Valor do débito</param>
         </member>
+        <member name="M:FluxoCaixa.WebApi.Controllers.UsuarioController.SignUp(FluxoCaixa.WebApi.Requests.SignUpCommand)">
+            <summary>
+            Cadastrar um usuário
+            </summary>
+        </member>
+        <member name="M:FluxoCaixa.WebApi.Controllers.UsuarioController.SignIn(FluxoCaixa.WebApi.Requests.SignInQuery)">
+            <summary>
+            Autenticar um usuário
+            </summary>
+        </member>
     </members>
 </doc>

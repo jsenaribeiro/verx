@@ -39,3 +39,8 @@
 - dbs: SqlServer
 - orm: Entity Framework
 - med: MediatR
+
+## Objetivos
+- escalabilidade: CQRS (queue-ready), DI, REST (stateless), Docker, cache?
+- resilência: SQL (ACID), health-check, circuit-break?
+- segurança: autenticação, autorização, jwt-bearer, open-api, logs

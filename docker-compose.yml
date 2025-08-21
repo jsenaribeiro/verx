@@ -1,0 +1,50 @@
+version: '3.9'
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: fluxo-sqlserver
+    ports: ["1433:1433"]
+    networks: [fluxo-network]
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Your_strong_password123
+    healthcheck:
+      test: ["CMD-SHELL", "sqlcmd -S localhost -U sa -P 123 -Q 'SELECT 1' || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7.2-alpine
+    container_name: fluxo-redis
+    ports:
+      - "6379:6379"
+    networks:
+      - fluxo-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fluxo-api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=FluxoCaixaDb;User=sa;Password=123;TrustServerCertificate=True
+      - Cache__Redis=redis:6379
+    ports: ["8080:80"]
+    networks: [fluxo-network]
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+networks:
+  fluxo-network:
+    driver: bridge

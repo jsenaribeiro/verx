@@ -15,18 +15,15 @@ namespace FluxoCaixa.UnitTests;
 
 public abstract class AbstractTest : IDisposable
 {
-   protected IServiceScope scope;
+   protected IServiceScope? scope;
 
-   protected IUnitOfWork unitOfWork;
+   protected IUnitOfWork? unitOfWork;
 
-   protected IServiceProvider provider;
+   protected IServiceProvider? provider;
 
-   protected DefaultHttpContext httpContext;
+   protected DefaultHttpContext? httpContext;
 
-   protected AbstractTest()
-   {
-      provider = Compose();
-   }
+   protected AbstractTest() => provider = Compose();
 
    [BeforeScenario]
    protected IServiceProvider Compose()
@@ -71,7 +68,7 @@ public abstract class AbstractTest : IDisposable
 
    protected ControllerContext UsuarioLogado(Usuario usuario)
    {
-      unitOfWork.Usuarios.SaveAsync(usuario).Wait();
+      unitOfWork!.Usuarios.SaveAsync(usuario).Wait();
 
       var claims = new ClaimsPrincipal(new ClaimsIdentity(new[]
       {

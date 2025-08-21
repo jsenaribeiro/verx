@@ -21,12 +21,12 @@ public class UsuarioStepDefinitions : AbstractTest
    private readonly UsuarioController _controller;
 
    public UsuarioStepDefinitions() =>
-      (_usuarios, _controller) = (new(), new UsuarioController(provider));
+      (_usuarios, _controller) = (new(), new UsuarioController(provider!));
 
    [Given(@"que há somente um usuário cadastrado:")]
    public void DadoUsuarioJaCadastradoComOsDados(Table table)
    {
-      unitOfWork.Usuarios.DropAsync(x => true).Wait();
+      unitOfWork!.Usuarios.DropAsync(x => true).Wait();
 
       _usuarios = table.CreateSet<UsuarioDTO>()
          .Select(x => x.ToUsuario())
@@ -43,14 +43,14 @@ public class UsuarioStepDefinitions : AbstractTest
    [Given(@"esse usuário já está registrado no sistema")]
    public void DadoEsseUsuarioJaEstaRegistradoNoSistema()
    {
-      unitOfWork.Usuarios.SaveAsync(_usuarios.Last()).Wait();
+      unitOfWork!.Usuarios.SaveAsync(_usuarios.Last()).Wait();
       _sucesso = true;
    }
 
    [Given(@"esse usuário não está registrado no sistema")]
    public void DadoEsseUsuarioNaoJaEstaRegistradoNoSistema()
    {
-      unitOfWork.Usuarios.DropAsync(x => x.Email == _usuarios.Last().Email).Wait();
+      unitOfWork!.Usuarios.DropAsync(x => x.Email == _usuarios.Last().Email).Wait();
       _sucesso = false;
    }
 
@@ -59,7 +59,7 @@ public class UsuarioStepDefinitions : AbstractTest
    {
       if (acao == "cadastrar")
       {
-         if (_sucesso) unitOfWork.Usuarios
+         if (_sucesso) unitOfWork!.Usuarios
             .DropAsync(x => x.Email == email).Wait();
 
          else DadoEsseUsuarioJaEstaRegistradoNoSistema();

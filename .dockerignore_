@@ -1,0 +1,12 @@
+bin/
+obj/
+out/
+packages/
+
+*.vs
+*.user
+*.suo
+*.log
+*.cache
+*.nupkg
+
