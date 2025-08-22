@@ -18,10 +18,8 @@ services:
   redis:
     image: redis:7.2-alpine
     container_name: fluxo-redis
-    ports:
-      - "6379:6379"
-    networks:
-      - fluxo-network
+    ports: ["6379:6379"]
+    networks: ["fluxo-network"]
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 10s
@@ -44,6 +42,16 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
+
+  jmeter:
+    image: justb4/jmeter:5.6.3
+    container_name: fluxo-jmeter
+    networks: [fluxo-network]
+    volumes: [./jmeter:/jmeter/test]
+    entrypoint: ["/bin/bash"]
+    profiles: ['test']
+    depends_on: [api]
+    tty: true
 
 networks:
   fluxo-network:

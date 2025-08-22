@@ -3,9 +3,11 @@ using FluxoCaixa.Domain;
 using FluxoCaixa.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
-var logger = builder.AddLogging();
+var configuration = builder.GetConfiguration();
+var logger = builder.GetLogging();
 var services = builder.Services;
-var configuration = builder.Configuration;
+
+logger.LogInformation("Iniciando serviço...");
 
 try
 {
@@ -18,30 +20,45 @@ try
    services.AddJwtBearer(configuration);
    services.AddSqlServerContext(configuration);
    services.AddHealthCheck(configuration);
-   services.AddTelemetry(configuration);
    services.AddDistributedCache(configuration);
-   services.AddApiDocumentation();
+   services.AddFallbacks(configuration, logger);
+   services.AddThottling(configuration);
+   services.AddCors(configuration);
+   services.AddDocumentation();
 
    var app = builder.Build();
 
-   app.UseSwagger();
-   app.UseSwaggerUI();
-   app.UseHttpsRedirection();
+   if (app.Environment.IsDevelopment())
+   {
+      app.UseDeveloperExceptionPage();
+      app.UseSwagger();
+      app.UseSwaggerUI();
+   }
+   else
+   {
+      app.UseExceptionHandler("/Error");
+      app.UseHsts();
+      app.UseHttpsRedirection();
+   }
+   
+   app.UseCors();
+   app.UseRateLimiter(); 
    app.UseResponseCaching();
    app.UseAuthentication();
    app.UseAuthorization();
+   app.UseRouting();
    app.MapControllers();
-
    app.MapHealthChecks("/health");
 
    app.Run();
 }
 catch (Exception ex)
 {
-   logger.Error(ex, "Erro na inicialização");
+   logger.LogError(ex, "Erro na inicialização");
    throw;
 }
 finally
 {
+   logger.LogError("Serviço encerrado.");
    NLog.LogManager.Shutdown();
 }

@@ -4,6 +4,7 @@ using FluxoCaixa.WebApi.Requests;
 using Microsoft.AspNetCore.Authorization;
 
 namespace FluxoCaixa.WebApi.Controllers;
+
 [ApiController]
 [Route("api/[controller]")]
 public class UsuarioController : ApiController<Domain.Usuarios.Usuario>

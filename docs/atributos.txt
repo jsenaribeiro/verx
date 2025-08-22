@@ -1,0 +1,6 @@
+- escalabilidade: containerização (kubernetes, docker), cache (response)
+- resiliência: fallback (retry, cache), circuit-breaker, throtling
+- segurança: validação, autenticação, autorização, encriptação, cors e tratamento de erro
+- padrões: SOA + MSA, DDD, CQRS(handlers), REST
+- integracao: JSON, HTTP
+- atributos: escalabilidade, resiliência, segurança, desempenho

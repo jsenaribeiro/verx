@@ -28,12 +28,6 @@
 - domain-driven design
 - behavior-driven development
 
-## Proposições
-- autenticação JWT Bearer e autorização RBAC
-- CQRS em nível infraestrutural (desempenho)
-- Event Sourcing (auditing historical data)
-- integração com SonarQube (cobertura)
-
 ## Dependencias
 - log: nlog
 - dbs: SqlServer
@@ -41,6 +35,20 @@
 - med: MediatR
 
 ## Objetivos
-- escalabilidade: CQRS (queue-ready), DI, REST (stateless), Docker, cache?
-- resilência: SQL (ACID), health-check, circuit-break?
-- segurança: autenticação, autorização, jwt-bearer, open-api, logs
+- escalabilidade: containerização (kubernetes, docker), cache (response)
+- resiliência: fallback (retry, cache), circuit-breaker, throtling
+- segurança: validação, autenticação, autorização, logs, cors e exceptions
+- padrões: SOA + MSA, DDD, CQRS(handlers), REST
+- integracao: JSON, HTTP, CQRS (MediatR), Polly(resiliência), Redis
+- atributos: escalabilidade, resiliência, segurança, desempenho
+
+## Proposições
+- CQRS em nível infraestrutural (desempenho)
+- Event Sourcing (auditing historical data)
+- integração com SonarQube (qualidade)
+
+## Pendente 
+- Redis 
+- Load Tests
+- Unit Tests
+- FUnctional Tests

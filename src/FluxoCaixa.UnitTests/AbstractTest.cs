@@ -10,6 +10,9 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 using FluxoCaixa.Domain.Usuarios;
 using Microsoft.Extensions.Configuration;
+using NSubstitute;
+using Polly;
+using Microsoft.Extensions.Caching.Distributed;
 
 namespace FluxoCaixa.UnitTests;
 
@@ -28,14 +31,24 @@ public abstract class AbstractTest : IDisposable
    [BeforeScenario]
    protected IServiceProvider Compose()
    {
+      var configuration = GetFakeConfiguration();
+      var policy = Substitute.For<IAsyncPolicy>();
+
+      policy.ExecuteAsync<decimal>(Arg.Any<Func<Task<decimal>>>())
+         .Returns(call => ((Func<Task<decimal>>)call[0])().Result);
+
       this.provider = new ServiceCollection()
          .AddScoped<LancamentoHandler>()
          .AddScoped<IUnitOfWork, UnitOfWork>()
-         .AddLogging(x => x.AddConsole())
+         .AddSingleton(typeof(ILogger<>), typeof(InMemoryLogger<>))
+         .AddFallbacks(configuration, new InMemoryLogger<AbstractTest>())
+         .AddThottling(configuration)
          .AddSingleton(AddHttpContext)
-         .AddSingleton(TestConfiguration)
+         .AddSingleton(configuration)
+         .AddSqlServerContext(configuration, true)
+         .AddDistributedCache(configuration, true)
+         .AddLogging()
          .AddMediatorCQRS()
-         .AddSqlServerContext()
          .BuildServiceProvider();
 
       this.scope = this.provider.CreateScope();
@@ -81,23 +94,27 @@ public abstract class AbstractTest : IDisposable
       return new ControllerContext { HttpContext = httpContext };
    }
 
-   private IConfiguration TestConfiguration
+   private IConfiguration GetFakeConfiguration()
    {
-      get
-      {
-         var configuration = new Dictionary<string, string>
+      var configuration = new Dictionary<string, string>
          {
             {"AllowedHosts", "*"},
             {"Logging:LogLevel:Default", "Information"},
             {"Logging:LogLevel:Microsoft.AspNetCore", "Warning"},
-            {"Jwt:Key", "d2j9uV6pQ5r7s8t0u1v2w3x4y5z6a7b8c9d0e1f2g3h4i5j6k7l8m9n0o1p2q3r"},
+            {"ConnectionStrings:DefaultConnection", ""},
+            { "Jwt:Key", "d2j9uV6pQ5r7s8t0u1v2w3x4y5z6a7b8c9d0e1f2g3h4i5j6k7l8m9n0o1p2q3r"},
             {"Jwt:Issuer", "fluxo-caixa-issuer"},
-            {"Jwt:Audience", "fluxo-caixa-audience"}
+            {"Jwt:Audience", "fluxo-caixa-audience"},
+            {"Thottling:WindowLimit", "7"},
+            {"Thottling:PermitLimit", "7"},
+            {"Thottling:QueuesLimit", "7"},
+            {"Fallback:Retry", "3"},
+            {"Fallback:Limit", "3"},
+            {"Fallback:Delay", "3"},
          };
 
-         return new ConfigurationBuilder()
-             .AddInMemoryCollection(configuration!)
-             .Build();
-      }
+      return new ConfigurationBuilder()
+          .AddInMemoryCollection(configuration!)
+          .Build();
    }
 }
