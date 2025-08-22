@@ -1,58 +1,54 @@
 version: '3.9'
 
 services:
-  sqlserver:
+  sql_server:
     image: mcr.microsoft.com/mssql/server:2022-latest
-    container_name: fluxo-sqlserver
+    container_name: sql_server
     ports: ["1433:1433"]
-    networks: [fluxo-network]
-    environment:
-      - ACCEPT_EULA=Y
-      - SA_PASSWORD=Your_strong_password123
+    networks: [network]
+    environment: ["ACCEPT_EULA=Y", "SA_PASSWORD=Str0ng!Pass"]
     healthcheck:
-      test: ["CMD-SHELL", "sqlcmd -S localhost -U sa -P 123 -Q 'SELECT 1' || exit 1"]
+      test: ["CMD-SHELL", "sqlcmd -S localhost -U sa -P Str0ng!Pass -Q 'SELECT 1' || exit 1"]
       interval: 10s
       timeout: 5s
       retries: 5
 
   redis:
     image: redis:7.2-alpine
-    container_name: fluxo-redis
+    container_name: redis
+    networks: ["network"]
     ports: ["6379:6379"]
-    networks: ["fluxo-network"]
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 10s
       timeout: 5s
       retries: 5
 
-  api:
+  webapi:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: fluxo-api
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=FluxoCaixaDb;User=sa;Password=123;TrustServerCertificate=True
-      - Cache__Redis=redis:6379
+    container_name: webapi
+    networks: [network]
     ports: ["8080:80"]
-    networks: [fluxo-network]
     depends_on:
-      sqlserver:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
+      redis: { condition: service_healthy }
+      sql_server: { condition: service_healthy }        
+    environment:
+      - Cache__Redis=redis:6379
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=FluxoCaixaDb;User=sa;Password=Str0ng!Pass;TrustServerCertificate=True
 
   jmeter:
+    container_name: jmeter
     image: justb4/jmeter:5.6.3
-    container_name: fluxo-jmeter
-    networks: [fluxo-network]
-    volumes: [./jmeter:/jmeter/test]
     entrypoint: ["/bin/bash"]
+    volumes: [./jmeter:~/jmeter/test]
+    depends_on: [webapi]
+    networks: [network]
     profiles: ['test']
-    depends_on: [api]
     tty: true
 
 networks:
-  fluxo-network:
-    driver: bridge
+  network: { driver: bridge }
+    
